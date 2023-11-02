@@ -1,42 +1,63 @@
-xp = 0
+import os
+
+base= 0
+cont=0
+classe=0
+ataque=0
+luta=0
+rodadas=0
 nomeHeroi = input("Digite o Nome do seu Herói: ").title()
 print("Você está entrando em uma aventura para se tornar o maior Herói de todos")
 list = ["1-Espada", "2-Machado", "3-Arco", "4-Cajado"]
 print(list)
 arma = str(input("Escolha Sua Arma: ")).upper()
-if arma == "MACHADO" or arma == "ESPADA" or arma == "1" or arma == "2":
-    print("Você será um Guerreiro")
+if arma == "ESPADA" or arma == "1" :
+    print("Você será um Espadachin")
+    classe="Espadachin"
+    ataque="Espada Cortante"
+elif arma == "Machado" or arma == "2":
+    print("Você será um Bárbaro")
+    classe="Bábaro"
+    ataque="Machadada Dupla"
 elif arma == "ARCO" or arma == "3":
     print("Você será um Caçador")
+    classe="Caçador"
+    ataque="Flecha Perfurante"
 elif arma == "CAJADO" or arma == "4":
     print("Você Será um Mago")
+    classe="Mago"
+    ataque="Bola de Fogo"
 else:
-    print("Escolha uma arma valida")
-print("Agora que Escolheu sua arma prepare-se para Batalha")
-luta=int(input("Quantas batalhas você quer lutar? "))
-for c in range(1,luta+1):
-    print("Um Ogro apareceu você irá atacar? 1-Ataque 2-Fuja")
-    ataque = input("Esolha agora {} ou morra  ".format(nomeHeroi))
-if ataque == "1":
-    print("Você Derrubou o ogro e ganhou 1000xp")
-    xp =int(xp + (c*1000))
-else:
-    print("Você escolheu a Vergonha {}".format(nomeHeroi))
-    xp =int(xp + (c*1000))
+    print("Você não escolheu uma opção válida, então acabou ficando sem arma")
+    classe="Aldeão"
+    ataque="Soco"
 
-print("Depois de Muita luta você {} Conseguiu sua Xp é {}".format(nomeHeroi, xp))
+print("Agora que Escolheu sua arma prepare-se para Batalha")
+rodadas=int(input("Quantas batalhas você quer lutar? "))
+for c in range(1,rodadas+1):
+    print("Um Ogro apareceu você irá atacar? 2-Ataque 1-Fuja")
+    luta =int(input("Esolha agora {} {} ou morra  ".format(classe,nomeHeroi)))
+    if luta %2==0:
+        print("{} {} você usou o ataque \033[031m{}\033[0;0m Derrubou o ogro e ganhou 1000xp".format(classe,nomeHeroi,ataque))
+        base +=luta
+        cont +=1
+    else:
+        print("{} {} Você escolheu a Vergonha".format(classe,nomeHeroi))
+xp=(base/2)*1000
 nivel=xp/1000
+
+print("{} {} Depois de Muita luta você Conseguiu sua Xp é {}".format(classe,nomeHeroi, xp))
 if xp <=1000:
-    print("Parabéns Herói {} você Chegou ao Nível {} e é \033[30mFerro".format(nomeHeroi,nivel))
+    print("Parabéns {} {} você Chegou ao Nível {} e é \033[47mFerro\033[0;0m".format(classe,nomeHeroi,nivel))
 elif xp >=1001 and xp <= 2000:
-    print("Parabéns Herói {} você Chegou ao Nível {} e é \031[37mBronze".format(nomeHeroi, nivel))
+    print("Parabéns {} {} você Chegou ao Nível {} e é \033[37mBronze\033[0;0m".format(classe,nomeHeroi, nivel))
 elif xp >=2001 and xp <=5000:
-    print("Parabéns Herói {} você Chegou ao Nível {} e é \033[37mPrata".format(nomeHeroi, nivel))
+    print("Parabéns {} {} você Chegou ao Nível {} e é \033[37mPrata\033[0;0m".format(classe,nomeHeroi, nivel))
 elif xp >=5001 and xp <= 8000:
-    print("Parabéns Herói {} você Chegou ao Nível {} e é \033[36mPlatina".format(nomeHeroi, nivel))
+    print("Parabéns {} {} você Chegou ao Nível {} e é \033[36mPlatina\033[0;0m".format(classe,nomeHeroi, nivel))
 elif xp >=8001 and xp <= 9000:
-    print("Parabéns seu Herói {} você Chegou ao Nível {} e é \033[33mDiamante".format(nomeHeroi, nivel))
+    print("Parabéns seu {} {} você Chegou ao Nível {} e é \033[33mDiamante\033[0;0m".format(classe,nomeHeroi, nivel))
 elif xp >=9001 and xp <=10000:
-    print("Parabéns Herói {} você Chegou ao Nível {} e é \033[35mImortal".format(nomeHeroi, nivel))
+    print("Parabéns {} {} você Chegou ao Nível {} e é \033[35mImortal\033[0;0m".format(classe,nomeHeroi, nivel))
 elif xp >=10001:
-    print("Parabéns Herói {}  Chegou ao Nível {} e é Radiante".format(nomeHeroi, nivel))
+    print("Parabéns {} {}  Chegou ao Nível {} e é Radiante".format(classe,nomeHeroi, nivel))
